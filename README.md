@@ -1,3 +1,9 @@
+
+
+FORKED FROM https://github.com/restorecommerce/pdf-rendering-srv
+
+Adds WriterDuet fonts. To update fonts, add to Font folder, rebuild image, and redeploy to Google Cloud Run
+
 # pdf-rendering-srv
 
 Docker image for rendering PDFs from HTML. Good for receipts, invoices, or any other content.
