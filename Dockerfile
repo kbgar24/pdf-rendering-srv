@@ -9,15 +9,33 @@ RUN groupadd -r app &&\
 # Create app directory
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/pdf-rendering-srv
+ENV FONT_DIR=/home/app/.fonts
+
 ## SETTING UP THE APP ##
 RUN mkdir $HOME
 WORKDIR $HOME
 # Chown all the files to the app user.
 RUN chown -R app:app $HOME
 RUN pwd
+
+
+
+
 # Change to the app user.
 USER app
+RUN mkdir $FONT_DIR
+
+COPY /fonts $FONT_DIR
+
+# RUN apt install ttf-mscorefonts-installer
+
+
+# Update font cache
+RUN fc-cache -f -v
+
+
 RUN git clone https://github.com/alvarcarto/url-to-pdf-api pdf-rendering-srv
+
 WORKDIR $APP_HOME
 RUN npm install --only=prod
 
